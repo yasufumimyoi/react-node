@@ -1,10 +1,11 @@
-import logo from "./logo.svg";
-import "./App.css";
+import { InputTodo } from "./components/InputTodo";
+import { ListTodo } from "./components/ListTodo";
 
 function App() {
   return (
-    <div className="App">
-      <p>Test</p>
+    <div className=" w-2/3 m-auto">
+      <InputTodo />
+      <ListTodo />
     </div>
   );
 }
