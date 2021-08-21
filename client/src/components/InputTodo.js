@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const InputTodo = () => {
+export const InputTodo = ({ todos, setTodos }) => {
   const [description, setDescription] = useState([]);
 
   const onSubmitForm = async (e) => {
@@ -12,7 +12,14 @@ export const InputTodo = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
-      });
+      })
+        .then((response) => response.json())
+        .then((data) =>
+          setTodos([
+            ...todos,
+            { todo_id: data.todo_id, description: data.description },
+          ])
+        );
       setDescription("");
     } catch (error) {
       console.log(error.message);
