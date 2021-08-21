@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { EditTodo } from "./EditTodo";
 
-export const ListTodo = () => {
-  const [todos, setTodos] = useState([]);
-
+export const ListTodo = ({ todos, setTodos }) => {
   const getTodos = async () => {
     try {
       const res = await fetch("http://localhost:3001/todos");

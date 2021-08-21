@@ -34,11 +34,18 @@ export const EditTodo = ({ todo, todos, setTodos }) => {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
-      });
-      const newTodos = [...todos];
-      newTodos[todo.todo_id] = description;
-      setTodos(newTodos);
-      window.location = "/";
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          const newTodo = [...todos];
+          newTodo.map((todo) => {
+            if (todo.todo_id == result.id) {
+              todo.description = result.description;
+            }
+          });
+
+          setTodos(newTodo);
+        });
     } catch (error) {
       console.log(error.message);
     }
